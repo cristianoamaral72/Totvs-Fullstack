@@ -27,9 +27,10 @@ public class BaseService<T> : IServiceBase<T> where T : class
         if (existing == null)
             return null;
 
-        await _repository.UpdateAsync(entity);
-        return entity;
+        await _repository.UpdateAsync(existing, entity);
+        return existing;
     }
+
 
     public async Task<bool> DeleteAsync(int id)
     {

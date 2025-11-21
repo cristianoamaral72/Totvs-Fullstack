@@ -1,70 +1,117 @@
+/* === CONTAINER === */
 .container {
   height: 100vh;
+  background: #f5f6fa;
 }
 
+/* === SIDENAV === */
 .sidenav {
-  width: 260px;
-  background-color: #6a0080;
-  color: white;
-  padding-top: 1rem;
-
-  mat-icon {
-    margin-right: 10px;
-    color: #fff;
-  }
-
-  a.mat-list-item {
-    color: white;
-    font-weight: 500;
-    border-radius: 4px;
-
-    &:hover {
-      background: rgba(255, 255, 255, 0.1);
-    }
-  }
-
-  .active {
-    background: rgba(255, 255, 255, 0.25) !important;
-  }
+  width: 250px;
+  background: linear-gradient(180deg, #6a0dad 0%, #7b1fa2 50%, #4a0072 100%);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  padding-top: 1.2rem;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  box-shadow: 4px 0 14px rgba(0, 0, 0, 0.22);
 }
 
+/* === LOGO === */
 .logo {
-  text-align: center;
-  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2.2rem;
 
   img {
     width: 120px;
+    filter: brightness(1.15);
   }
 }
 
-.topbar {
-  background-color: #6a0080;
-  color: white;
-  height: 60px;
+/* === MENU LIST === */
+mat-nav-list {
+  flex-grow: 1;
+  padding: 0 12px;
+}
+
+/* === ITEM DO MENU === */
+a.mat-list-item {
+  color: #ffffff !important;         /* texto branco */
+  font-size: 15px;
+  height: 48px;
+  border-radius: 10px;
+  margin-bottom: 8px;
   display: flex;
   align-items: center;
+  transition: background 0.25s ease, transform 0.15s;
 
   mat-icon {
-    color: white;
+    margin-right: 12px;
+    font-size: 20px;
+    color: #ffffff !important;       /* ícone branco */
   }
 
-  .title {
-    font-size: 18px;
-    margin-left: 10px;
+  /* HOVER PREMIUM */
+  &:hover {
+    background: rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(3px);
+    transform: translateX(4px);       /* animação moderna */
   }
 }
 
-.content {
-  padding: 2rem;
-  background: #f2f5f9;
-  height: calc(100vh - 60px);
+/* === ITEM ATIVO === */
+a.active {
+  background: rgba(255, 255, 255, 0.30) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.33);
+
+  mat-icon {
+    color: #ffffff !important;
+  }
 }
 
+/* === FOOTER === */
 .footer {
-  position: absolute;
-  bottom: 10px;
-  width: 100%;
   text-align: center;
-  opacity: 0.7;
+  padding: 12px 0;
   font-size: 11px;
+  color: rgba(255, 255, 255, 0.85);
 }
+
+/* === TOPBAR === */
+.topbar {
+  background-color: #6a0dad;
+  color: #ffffff;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 16px;
+  font-weight: 600;
+  letter-spacing: .4px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.22); /* sombra mais elegante */
+
+  mat-icon {
+    color: #ffffff;
+    font-size: 24px;
+  }
+}
+
+/* === TÍTULO === */
+.title {
+  font-size: 18px;
+}
+
+/* === ÁREA DE CONTEÚDO === */
+.content {
+  padding: 2.5rem;
+  background-color: #f5f6fa;
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+

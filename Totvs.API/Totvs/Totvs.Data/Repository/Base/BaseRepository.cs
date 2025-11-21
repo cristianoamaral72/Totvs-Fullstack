@@ -38,11 +38,12 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         return entity;
     }
 
-    public virtual async Task UpdateAsync(T entity)
+    public virtual async Task UpdateAsync(T existingEntity, T newValues)
     {
-        _dbSet.Update(entity);
+        _context.Entry(existingEntity).CurrentValues.SetValues(newValues);
         await _context.SaveChangesAsync();
     }
+
 
     public virtual async Task DeleteAsync(T entity)
     {

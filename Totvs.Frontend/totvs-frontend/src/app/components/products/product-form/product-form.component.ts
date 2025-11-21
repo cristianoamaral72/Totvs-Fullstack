@@ -60,6 +60,7 @@ export class ProductFormComponent implements OnInit {
 
   buildForm(): void {
     this.form = this.fb.group({
+      id: [0],
       name: ['', [Validators.required, Validators.maxLength(100)]],
       description: ['', [Validators.maxLength(500)]],
       price: [0, [Validators.required, Validators.min(0)]],
@@ -73,6 +74,7 @@ export class ProductFormComponent implements OnInit {
 
     this.productService.getById(id).subscribe({
       next: (product) => {
+        product.id = id;
         this.form.patchValue(product);
         this.loading = false;
       },

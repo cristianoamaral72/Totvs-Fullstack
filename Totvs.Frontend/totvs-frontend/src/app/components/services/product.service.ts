@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ProductService {
   // Base URL for the API. Adjust according to your backend.
-  private readonly baseUrl = environment.urlServices;
+  private readonly baseUrl = `${environment.urlServices}/Products` ;
 
   constructor(private http: HttpClient) {}
 
