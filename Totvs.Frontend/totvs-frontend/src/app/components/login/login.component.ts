@@ -1,55 +1,82 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { environment } from '../../../environments/environment';
+
+// Angular Material
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { LoaderComponent } from '../loader/loader.component';
+
+// Seu componente de loader
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    // Material
+    MatInputModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatIconModule,
+
+    // Forms
+    ReactiveFormsModule,
+    FormsModule,
+
+    // Router
+    RouterModule,
+
+    // Loader
+    LoaderComponent
+  ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrl: './login.component.css'
 })
-export class LoginComponent {
-  email = '';
-  password = '';
-  loading = false;
-  errorMessage = '';
+export class LoginComponent implements OnInit {
+
+
+  formularioLogin!: FormGroup;
+  mensagemErro: string = '';
+  loader: boolean = false;
+  environment = environment;
 
   constructor(
-    private router: Router
-  ) {}
+    private router: Router,
+    private fb: FormBuilder,
+  ) { }
 
-  async onSubmit() {
-    if (!this.email || !this.password) {
-      this.errorMessage = 'Por favor, preencha todos os campos';
+  ngOnInit(): void {
+    this.formularioLogin = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
+
+  entrar() {
+    this.loader = true;
+    this.mensagemErro = '';
+
+    if (this.formularioLogin.invalid) {
+      this.loader = false;
+      this.mensagemErro = 'Preencha todos os campos.';
       return;
     }
 
-    this.loading = true;
-    this.errorMessage = '';
+    const { username, password } = this.formularioLogin.value;
 
-    // try {
-    //   console.log('[Login] Autenticando no Supabase...');
-    //   await this.supabaseService.signIn(this.email, this.password);
+    if (username === 'admin' && password === '123') {
+      this.router.navigate(['/home']);
+      return;
+    }
 
-    //   console.log('[Login] Autenticando na API de trading...');
-    //   const tradingResponse = await this.tradingApiService.login(this.email, this.password);
+    this.loader = false;
+    this.mensagemErro = 'Usuário ou senha inválidos.';
+  }
 
-    //   console.log('[Login] Resposta da API:', tradingResponse);
-
-    //   if (tradingResponse.code === 'success') {
-    //     console.log('[Login] ✓ Login bem-sucedido! SSID:', tradingResponse.ssid);
-    //     this.router.navigate(['/trading']);
-    //   } else {
-    //     console.error('[Login] ✗ Falha no login:', tradingResponse);
-    //     this.errorMessage = 'Erro ao autenticar na plataforma de trading';
-    //   }
-    // } catch (error: any) {
-    //   console.error('[Login] Erro durante login:', error);
-    //   this.errorMessage = error.message || 'Erro ao fazer login';
-    // } finally {
-    //   this.loading = false;
-    // }
+  login() {
+    throw new Error('Method not implemented.');
   }
 }
