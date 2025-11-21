@@ -1,109 +1,165 @@
+/* ===== LAYOUT PRINCIPAL ===== */
 .login {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20px;
-    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--bg-color5);
 }
 
-.box-left, .box-right {
+/* ===== LADO ESQUERDO (LOGO) ===== */
+.box-left {
     width: 100%;
+    height: 40vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
-}
-
-.box-left {
     background-color: var(--bg-color2);
-    color: #ffffff;
-    margin-bottom: 20px;
+    padding: 40px;
 }
 
-.box-right {
-    background-color: var(--bg-color5);
-    color: #000000;
-}
-
-.btn-interfile {
-    background-color: var(--bg-color2);
-    color: #ffffff;
-    width: 100%;
-    max-width: 200px;
-}
-
-.box-logo-atento {
-    position: static;
-    margin-top: 20px;
-}
-
-.box-left > img {
-    max-width: 100%;
+.box-left img {
+    max-width: 60%;
+    width: 260px;
     height: auto;
+    filter: drop-shadow(0px 2px 4px rgba(0, 0, 0, 0.2));
 }
 
+/* ===== LADO DIREITO (FORMULÁRIO) ===== */
+.box-right {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-color5);
+    padding: 40px;
+}
+
+/* ===== CARD DO FORMULÁRIO ===== */
 .box-form {
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
+    max-width: 420px;
+    background: white;
+    padding: 36px 42px;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(5px);
 }
 
-.recaptcha {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.box-form h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--bg-color2);
 }
 
-.mat-drawer-container {
-    top: 0 !important;
+/* ===== CAMPOS MATERIAL ===== */
+.mat-mdc-form-field {
+    width: 100%;
+    margin-bottom: 22px;
 }
 
+/* ===== BOTÃO totvs ===== */
+.btn-totvs {
+    width: 100%;
+    padding: 12px 0;
+    max-width: 100%;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 25px;
+    background-color: #403D3A;
+    color: #ffffff !important;
+    transition: 0.25s ease;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.btn-totvs:hover {
+     background-color: 403D3A;
+    transform: translateY(-2px);
+}
+
+/* ===== LINKS ===== */
+.box-form a {
+    color: #005fcb;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.box-form a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RODAPÉ DE VERSÃO ===== */
 .versao {
     font-size: 12px;
     font-weight: 600;
     text-align: right;
-    display: block;
-    margin-top: 10px;
+    margin-top: 20px;
+    opacity: 0.7;
 }
 
-/* Media Query for larger screens */
-@media (min-width: 768px) {
+/* ==== RESPONSIVO PARA TELAS GRANDES ==== */
+@media (min-width: 900px) {
     .login {
         flex-direction: row;
-        padding: 0;
     }
 
-    .box-left, .box-right {
+    .box-left,
+    .box-right {
         width: 50%;
         height: 100vh;
     }
 
-    .box-left {
-        position: static;
-    }
-
-    .box-right {
-        position: static;
+    .box-left img {
+        max-width: 75%;
     }
 
     .box-form {
-        position: static;
-        width: 80%;
-        max-width: 700px;
-        padding: 40px;
+        max-width: 420px;
+        padding: 48px 50px;
+    }
+}
+
+/* ==== TABLETS ==== */
+@media (min-width: 600px) and (max-width: 899px) {
+    .box-left {
+        height: 45vh;
     }
 
-    .box-logo-atento {
-        position: absolute;
-        bottom: 20px;
-        right: 20px;
+    .box-right {
+        height: 55vh;
     }
+}
+
+/* Container dos links e versão */
+.login-links {
+    width: 100%;
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0 20px 0; */
+}
+
+/* Link “Esqueci Minha Senha” */
+.login-links a {
+    color: #0067dd;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* Texto da versão */
+.login-links .versao {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.8;
+    color: #444;
+    margin-left: 47px;
 }

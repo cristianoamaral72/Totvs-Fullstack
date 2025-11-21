@@ -50,8 +50,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.formularioLogin = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
+      username: ['master', Validators.required],
+      password: ['123', Validators.required],
     });
   }
 
@@ -76,7 +76,27 @@ export class LoginComponent implements OnInit {
     this.mensagemErro = 'Usuário ou senha inválidos.';
   }
 
-  login() {
-    throw new Error('Method not implemented.');
+login() {
+  this.loader = true;
+  this.mensagemErro = '';
+
+  if (this.formularioLogin.invalid) {
+    this.loader = false;
+    this.mensagemErro = 'Preencha todos os campos.';
+    return;
   }
+
+  const { username, password } = this.formularioLogin.value;
+
+  // Login fictício (trocar por API real)
+  if (username === 'master' && password === '123') {
+    this.router.navigate(['/home']);
+    return;
+  }
+
+  this.loader = false;
+  this.mensagemErro = 'Usuário ou senha inválidos.';
+}
+
+
 }
