@@ -14,7 +14,7 @@
     class="spinner">
   </mat-progress-spinner>
 
-  <table mat-table [dataSource]="dataSource" *ngIf="!loading && dataSource.data.length > 0">
+  <table mat-table [dataSource]="dataSource" *ngIf="!loading">
 
     <!-- ID -->
     <ng-container matColumnDef="id">
